@@ -4,8 +4,8 @@ import useStore from "../store/useStore";
 const Content = (props) => {
     const { article, setArticle, setOpenModal, modal } = props;
     const { articleListStore, saveInfoStore } = useStore();
-    const { author, date } = saveInfoStore((state) => state);
-    const { createArticle } = articleListStore((state) => state);
+    const { author, date } = saveInfoStore(); // fetching everything
+    const createArticle = articleListStore((state) => state.createArticle); // selecting state slice
 
     useEffect(() => {
         if (!modal) return;

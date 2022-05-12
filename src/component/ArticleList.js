@@ -2,15 +2,17 @@ import { AgGridReact } from "ag-grid-react";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faPenToSquare, faTrashCan, faUser, faClock } from "@fortawesome/free-solid-svg-icons";
-import useStore from "../store/useStore";
+// import useStore from "../store/useStore";
+import { saveInfoStore } from "../store/saveInfo";
+import { articleListStore } from "../store/articleList";
 import Modal from "./Modal";
 
 const ArticleList = (props) => {
     const { article, setArticle } = props;
     const [openModal, setOpenModal] = useState(false);
-    const { articleListStore, saveInfoStore } = useStore();
-    const { author, date, setAuthor, setDate } = saveInfoStore((state) => state);
-    const { articleList, updateArticle, deleteArticle } = articleListStore((state) => state);
+    // const { articleListStore, saveInfoStore } = useStore();
+    const { author, date, setAuthor, setDate } = saveInfoStore(); // fetching everything
+    const { articleList, updateArticle, deleteArticle } = articleListStore();
 
     useEffect(() => {
         setDate(new Date());
