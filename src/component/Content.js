@@ -1,10 +1,12 @@
 import { useEffect } from "react";
 import useStore from "../store/useStore";
+import { authorStore, dateStore } from "../store/saveInfo";
 
 const Content = (props) => {
     const { article, setArticle, setOpenModal, modal } = props;
-    const { articleListStore, saveInfoStore } = useStore();
-    const { author, date } = saveInfoStore(); // fetching everything
+    const { articleListStore } = useStore();
+    const author = authorStore((state) => state.author);
+    const date = dateStore((state) => state.date);
     const createArticle = articleListStore((state) => state.createArticle); // selecting state slice
 
     useEffect(() => {
@@ -23,7 +25,7 @@ const Content = (props) => {
     const contentChangeHandler = (e) => {
         const tempArticle = Object.assign({}, article);
         tempArticle[e.target.id] = e.target.value;
-        setArticle({ ...tempArticle });
+        setArticle(tempArticle);
     };
     return (
         <section className="content">

@@ -1,11 +1,14 @@
 import create from "zustand";
 
-export const saveInfoStore = create((set) => ({
+export const authorStore = create((set) => ({
     author: "Anonymous",
-    date: new Date(),
     setAuthor: (author) => {
         set((state) => ({ author }));
     },
+}));
+
+export const dateStore = create((set) => ({
+    date: new Date(),
     setDate: (date) => {
         set((state) => ({ date }));
     },

@@ -1,8 +1,8 @@
 import { articleListStore } from "./articleList";
-import { saveInfoStore } from "./saveInfo";
+import { authorStore, dateStore } from "./saveInfo";
 
 const useStore = () => {
-    return { articleListStore, saveInfoStore };
+    return { articleListStore, authorStore, dateStore };
 };
 
 export default useStore;

@@ -1,26 +1,19 @@
 import { AgGridReact } from "ag-grid-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faPenToSquare, faTrashCan, faUser, faClock } from "@fortawesome/free-solid-svg-icons";
-// import useStore from "../store/useStore";
-import { saveInfoStore } from "../store/saveInfo";
+import { faPlus, faPenToSquare, faTrashCan, faUser } from "@fortawesome/free-solid-svg-icons";
+import { authorStore } from "../store/saveInfo";
 import { articleListStore } from "../store/articleList";
 import Modal from "./Modal";
+import Time from "./Time";
 
 const ArticleList = (props) => {
+    console.log("ArticleList component rendered");
     const { article, setArticle } = props;
     const [openModal, setOpenModal] = useState(false);
-    // const { articleListStore, saveInfoStore } = useStore();
-    const { author, date, setAuthor, setDate } = saveInfoStore(); // fetching everything
+    const { author, setAuthor } = authorStore(); // fetching everything
     const { articleList, updateArticle, deleteArticle } = articleListStore();
 
-    useEffect(() => {
-        setDate(new Date());
-        let timeInterval = setInterval(() => setDate(new Date()), 1000);
-        return () => {
-            clearInterval(timeInterval);
-        };
-    }, [setDate]);
     const userNameChangeHandler = (e) => {
         setAuthor(e.target.value);
     };
@@ -53,12 +46,7 @@ const ArticleList = (props) => {
                         </label>
                         <input id="user" onChange={userNameChangeHandler} value={author} />
                     </div>
-                    <div className="time">
-                        <label htmlFor="time">
-                            <FontAwesomeIcon icon={faClock} className="ic-gray" /> 현재시간
-                        </label>
-                        <input id="time" className="userInfo__time" value={date.toLocaleTimeString()} readOnly></input>
-                    </div>
+                    <Time />
                 </div>
                 <div className="board">
                     <div className="board__buttons">
