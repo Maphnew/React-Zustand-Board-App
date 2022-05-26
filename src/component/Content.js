@@ -1,12 +1,11 @@
 import { useEffect } from "react";
 import useStore from "../store/useStore";
-import { authorStore, dateStore } from "../store/saveInfo";
+import { authorStore } from "../store/saveInfo";
 
 const Content = (props) => {
     const { article, setArticle, setOpenModal, modal } = props;
     const { articleListStore } = useStore();
     const author = authorStore((state) => state.author);
-    const date = dateStore((state) => state.date);
     const createArticle = articleListStore((state) => state.createArticle); // selecting state slice
 
     useEffect(() => {
@@ -17,7 +16,8 @@ const Content = (props) => {
         });
     }, [author]);
     const submitHandler = (e) => {
-        article.date = date.toLocaleDateString();
+        const date = new Date();
+        article.date = date;
         e.preventDefault();
         createArticle(article);
         setOpenModal(false);

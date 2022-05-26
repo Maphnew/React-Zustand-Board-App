@@ -4,7 +4,6 @@ import { dateStore } from "../store/saveInfo";
 import { useEffect } from "react";
 
 const Time = () => {
-    console.log("Time component rendered");
     const { date, setDate } = dateStore(); // fetching everything
     useEffect(() => {
         setDate(new Date());
