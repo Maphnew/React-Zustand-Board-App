@@ -37,8 +37,8 @@ const ArticleList = (props) => {
     };
     return (
         <>
-            <section className="article-list">
-                <div className="article-list__header">
+            <section className="p-5 flex flex-1 flex-col">
+                <div className="flex content-between">
                     <div className="userInfo">
                         <label htmlFor="user">
                             <FontAwesomeIcon icon={faUser} className="ic-gray" /> 사용자

@@ -28,7 +28,7 @@ const Content = (props) => {
         setArticle(tempArticle);
     };
     return (
-        <section className="content">
+        <section className="p-5 flex flex-1 flex-col">
             <form id="form-content" onSubmit={submitHandler}>
                 <h3>Contents</h3>
                 <label>
